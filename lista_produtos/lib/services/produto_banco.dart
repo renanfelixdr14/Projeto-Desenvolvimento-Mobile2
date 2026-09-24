@@ -19,7 +19,7 @@ class ProdutoBanco {
         )""");
       },
       version: 1
-    );
+    ); // escondido
   }
   Future<List<ProdutoModel>> listarProdutos() async {
     final db = await iniciarBanco();

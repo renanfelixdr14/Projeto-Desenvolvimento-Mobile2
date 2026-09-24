@@ -31,7 +31,7 @@ class ProdutoModel {
       caracteristica: json['caracteristica'] ?? '',
     );
   }
-
+ // escondido
   Map<String, dynamic> toJson() {
     return {
       "id": id,
