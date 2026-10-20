@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:guia/models/lugares_model.dart';
 import 'package:guia/services/lugares_service.dart';
-import 'package:guia/services/session_service.dart';
 
 class LugaresController extends ChangeNotifier {
   bool carregando = false;
