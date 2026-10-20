@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
- 
+import 'package:provider/provider.dart';
+import 'package:guia/controllers/theme_controller.dart';
+
 AppBarTheme defineAppBar(cor) {
   return AppBarTheme(
     centerTitle: true,
@@ -21,4 +23,21 @@ ElevatedButtonThemeData defineBotaoElevated(cor) {
     style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
   );
 }
- 
+
+class ThemeWidget extends StatelessWidget {
+  const ThemeWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ThemeController>(
+      builder: (context, themeController, child) {
+        return IconButton(
+          icon: Icon(themeController.iconeAtual),
+          onPressed: () {
+            themeController.alternarTema();
+          },
+        );
+      },
+    );
+  }
+}

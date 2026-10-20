@@ -3,7 +3,7 @@ import 'package:guia/models/lugares_model.dart';
 import 'package:http/http.dart' as http;
 
 class LugaresService {
-  String url = "https://guiaturismo.onrender.com/lugares"; 
+  String url = "https://guia.liliaborges.com.br/lugares"; 
   int pagina = 1;
   int limite = 10;
 
