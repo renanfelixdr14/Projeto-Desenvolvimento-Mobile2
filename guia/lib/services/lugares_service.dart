@@ -24,23 +24,25 @@ class LugaresService {
     }
   }
 
-  Future<String> cadastrarLugar(LugaresModel dados, token) async {
-    try {
-      if(token.isEmpty) {
-        return "Não autorizado!";
-      }
-      final resposta = await http.post(
-        Uri.parse(url),
-        headers: {
-          'Content-Type' : 'aplication/json',
-          'Authorization' : 'Bearer $token'
-        },
-        body: jsonEncode(dados.toJson())
-      );
-      Map<String, dynamic> mensagem = jsonDecode(resposta.body);
-      return mensagem['message'];
-    } catch (erro) {
-      rethrow;
+  Future<String> cadastrarLugar(LugaresModel dados, String token) async {
+  try {
+    if (token.isEmpty) {
+      return "Você precisa estar logado para cadastrar um lugar!";
     }
+
+    final resposta = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      body: jsonEncode(dados.toJson()),
+    );
+
+    final Map<String, dynamic> mensagem = jsonDecode(resposta.body);
+    return mensagem['message'] ?? mensagem['status'] ?? 'Cadastrado com sucesso!';
+  } catch (erro) {
+    rethrow;
   }
+}
 }

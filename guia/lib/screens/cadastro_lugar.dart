@@ -38,7 +38,7 @@ class CadastroLugar extends StatelessWidget {
                     right: 8,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withValues(alpha: 0.8),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
@@ -59,6 +59,17 @@ class CadastroLugar extends StatelessWidget {
                 prefixIcon: Icon(Icons.place),
               ),
             ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: cadastroController.descricaoController,
+              maxLines: 3,
+              decoration: const InputDecoration(
+                labelText: 'Descrição',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.description),
+              ),
+            ),
+
             const SizedBox(height: 16),
             
             TextField(

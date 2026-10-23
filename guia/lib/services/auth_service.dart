@@ -3,18 +3,20 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  final String url = 'https://guiaturismo.onrender.com/login';
+  final String baseUrl = 'https://guia.liliaborges.com.br';
   
   Future<Map> autenticar(String email, String senha) async {
     try {
       final response = await http.post(
-        Uri.parse(url),
+        Uri.parse('$baseUrl/login'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({"email": email, "senha": senha}),
       );
+      
       final dados = jsonDecode(response.body);
+      
       if (response.statusCode == 200) {
-        return dados['data'];
+        return dados['data'] ?? dados; 
       } else {
         debugPrint(dados.toString());
         return {};
@@ -22,5 +24,5 @@ class AuthService {
     } catch(e) {
       rethrow;
     }
-  } 
+  }
 }

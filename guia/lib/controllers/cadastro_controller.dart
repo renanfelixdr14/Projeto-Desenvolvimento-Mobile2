@@ -5,12 +5,14 @@ import 'package:provider/provider.dart';
 
 class CadastroController extends ChangeNotifier {
   final TextEditingController nomeController = TextEditingController();
+  final TextEditingController descricaoController = TextEditingController();
   final TextEditingController categoriaController = TextEditingController();
   final TextEditingController latitudeController = TextEditingController();
   final TextEditingController longitudeController = TextEditingController();
 
   void limparCampos() {
     nomeController.clear();
+    descricaoController.clear();
     categoriaController.clear();
     latitudeController.clear();
     longitudeController.clear();
@@ -19,6 +21,7 @@ class CadastroController extends ChangeNotifier {
   @override
   void dispose() {
     nomeController.dispose();
+    descricaoController.dispose(); 
     categoriaController.dispose();
     latitudeController.dispose();
     longitudeController.dispose();
@@ -27,13 +30,15 @@ class CadastroController extends ChangeNotifier {
 
   Future<void> salvarLugar(BuildContext context) async {
     final nome = nomeController.text;
-    final categoria = categoriaController.text;
+    final descricao = descricaoController.text;
+    final categoria = int.tryParse(categoriaController.text);
     final latitude = double.tryParse(latitudeController.text);
     final longitude = double.tryParse(longitudeController.text);
 
-    if (nome.isEmpty || latitude == null || longitude == null) {
+    
+    if (nome.isEmpty || descricao.isEmpty || latitude == null || longitude == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Preencha Nome, Latitude e Longitude corretamente.')),
+        const SnackBar(content: Text('Preencha Nome, Descrição, Latitude e Longitude corretamente.')),
       );
       return;
     }
@@ -41,7 +46,8 @@ class CadastroController extends ChangeNotifier {
     final novoLugar = LugaresModel(
       id: 0,
       nome: nome,
-      categoria: categoria,
+      descricao: descricao,
+      categoriaId: categoria,
       latitude: latitude,
       longitude: longitude,
     );

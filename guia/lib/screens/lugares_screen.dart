@@ -41,7 +41,7 @@ class _LugaresScreenState extends State<LugaresScreen> {
                 child: ListTile(
                   onTap: (){},
                   title: Text(lugar.nome),
-                  subtitle: Text(lugar.categoria.toString()),
+                  subtitle: Text(lugar.descricao.toString()),
                   leading: const CircleAvatar(child: Icon(Icons.place)),
                   trailing: IconButton(onPressed: (){}, icon: const Icon(Icons.favorite)),
                 ),
